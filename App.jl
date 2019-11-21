@@ -14,7 +14,6 @@ data = DataFrame(y =[rand(TruncatedNormal(1, .4n, n/2, 2n)) for n in 1:100], x=c
 ols = lm(@formula(y ~ x), data)
 
 # Get cutoff points to group data (we’ll use these to generate the distributions)
-groups = vcat(0, [percentile(data.x, n) for n in 10:20:100])
 groups = [percentile(data.x, n) for n in 0:20:100]
 
 dists = [
