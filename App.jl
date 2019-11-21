@@ -29,7 +29,9 @@ distlocs = [percentile(data.x, n) for n in 10:20:100]
 
 xmin = minimum(data.y)
 xmax = maximum(data.y)
-xrange = collect(xmin:1:xmax)
+
+# You'll likely have to tweak the xmin/xmax values in xrange to get the desired result
+xrange = collect(xmin-25:1:1.5xmax)
 
 # Add scatter points
 p = plot(
@@ -54,3 +56,5 @@ for i in 1:length(dists)
         fill=(0.0)
     )
 end
+
+savefig(p, "output.png")
