@@ -5,6 +5,7 @@ using Random
 using StatsBase
 using StatsPlots
 
+# Set plots backend to PyPlot
 pyplot()
 
 # Generate some funky heteroscedastic data
@@ -24,7 +25,6 @@ dists = [
 # The distributions are at the 20th, 40th, 60th, 80th, and 100th percentiles so this
 # next variable will store values at the 10th, 30th, etc., percentiles so that dists
 # appear in the middle of the data points that they represent when plotted
-
 distlocs = [percentile(data.x, n) for n in 10:20:100]
 
 xmin = minimum(data.y)
@@ -44,7 +44,7 @@ p = plot(
 # Add regression line
 plot!(data.x, predict(ols), line=:line, linestyle=:dash, linealpha=0.6)
 
-# Add rest of distributions (30th - 90th)
+# Add distributions
 for i in 1:length(dists)
     plot!(
         zeros(length(xrange)) .+ distlocs[i],
